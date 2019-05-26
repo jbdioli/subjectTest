@@ -6,7 +6,18 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="infoData && infoData.length > 0">
+<ion-content>
+<!-- Get Data -->
+<div *ngIf="infoData && infoData.length > 0">
   <h6>{{ infoData[0].name }}</h6>
-  <img src="{{infoData[0].path + infoData[0].imgName1 +infoData[0].imgExt}}">
+  <img class="imgSize" src="{{infoData[0].path + infoData[0].imgName1 +infoData[0].imgExt}}">
+</div>
+  
+<!-- Insert Data -->
+<form [formGroup]="memoryForm" (ngSubmit)="saveMemory()">
+  <label> Name </label>
+  <input formControlName="name" type="text">
+  <ion-button expand="full" type="submit" [disabled]="!memoryForm.valid">Save <ion-icon name="save" slot="start"></ion-icon></ion-button>
+</form>
+
 </ion-content>
