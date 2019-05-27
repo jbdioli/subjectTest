@@ -3,7 +3,8 @@
         "TB_Profile": [
             {
                 "id": 0,
-                "name": "Laura Dubois",
+                "firstName": "Laura",
+                "lastName": "Dubois",
                 "path": "/assets/img/",
                 "imgName1": "photo1",
                 "imgExt": ".jpg"

@@ -20,7 +20,10 @@ export class HomePage implements OnInit, OnDestroy {
 
   infoData: ArrayModel[] = [];
 
-  constructor(private modalController: ModalController, public navCtrl: NavController, private storageService: StorageService, private fb: FormBuilder) { }
+  constructor(private modalController: ModalController,
+              public navCtrl: NavController,
+              private storageService: StorageService,
+              private fb: FormBuilder) { }
 
   ngOnInit() {
     this.storageService.getData();
@@ -34,14 +37,23 @@ export class HomePage implements OnInit, OnDestroy {
 
 
     // this.memoryForm = this.fb.group({ name: ['', Validators.required] });
-    this.memoryForm = this.fb.group({ name: ['', Validators.required] });
+    this.memoryForm = this.fb.group(
+      {
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required]
+      });
 
     console.log('Form created : ', this.memoryForm.value);
   }
 
   saveMemory() {
-    const nameControl = this.memoryForm.get('name');
-    this.infoData[0].name = nameControl.value;
+    const nameControl = this.memoryForm.get('firstName');
+    this.infoData[0].firstName = nameControl.value;
+    this.storageService.sendData(this.infoData).subscribe(
+      (response) => console.log(response),
+      (error) => console.log('Error from server : ', error),
+    );
+    console.log('From FormCTRL : ', nameControl);
     console.log('array :', this.infoData);
     console.log('memory form : ', this.memoryForm.value);
   }
