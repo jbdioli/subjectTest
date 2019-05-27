@@ -14,7 +14,7 @@
   </div>
 
   <!-- Insert Data -->
-  <form [formGroup]="memoryForm" (ngSubmit)="saveMemory(f)" #f="ngForm">
+  <form [formGroup]="memoryForm" (ngSubmit)="saveMemory()">
     <ion-list>
       <ion-item>
         <label> First Name </label>
@@ -26,7 +26,7 @@
       </ion-item>
     </ion-list>
 
-    <ion-button expand="full" type="submit" [disabled]="!f.valid">Save <ion-icon name="save" slot="start">
+    <ion-button expand="full" type="submit" [disabled]="!memoryForm.valid">Save <ion-icon name="save" slot="start">
       </ion-icon>
     </ion-button>
   </form>

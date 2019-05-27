@@ -3,9 +3,9 @@ import { ModalController, NavController } from '@ionic/angular';
 
 import { Subscription } from 'rxjs';
 
-import { ArrayModel } from '../models/array.model'
+import { ArrayModel } from '../models/array.model';
 import { StorageService } from '../services/storage.service';
-import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 
 
@@ -35,24 +35,26 @@ export class HomePage implements OnInit, OnDestroy {
         console.log('Error : ', error);
       });
 
+    this.intiForm();
+  }
+
+  intiForm() {
     this.memoryForm = this.fb.group(
       {
         firstName: ['', Validators.required],
         lastName: ['', Validators.required]
       });
-
     console.log('Form created : ', this.memoryForm.value);
   }
 
-  saveMemory(form: NgForm) {
-    this.infoData[0].firstName = this.memoryForm.value.firstName;
-    this.infoData[0].lastName = this.memoryForm.value.lastName;
-    this.storageService.sendData(this.infoData).subscribe(
-      (response) => console.log(response),
-      (error) => console.log('Error from server : ', error),
-    );
+  saveMemory() {
+     this.infoData[0].firstName = this.memoryForm.value.firstName;
+     this.infoData[0].lastName = this.memoryForm.value.lastName;
+     this.storageService.sendData(this.infoData).subscribe(
+       (response) => console.log(response),
+       (error) => console.log('Error from server : ', error),
+     );
 
-    console.log('From HTML Form : ', form);
     console.log('array :', this.infoData);
     console.log('memory form : ', this.memoryForm.value);
   }
