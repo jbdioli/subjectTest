@@ -10,8 +10,8 @@ import { ArrayModel } from '../models/array.model';
 export class StorageService {
   dbSubject = new Subject<ArrayModel[]>();
 
-  private _url: any = '../assets/DB-Test/DB_Info.json';
-  //private _url: any = 'https://db-test-23664.firebaseio.com/DB_Info.json';
+  //private _url: any = '../assets/DB-Test/DB_Info.json';
+  private _url: any = 'https://db-test-23664.firebaseio.com/DB_Info.json';
 
   // private infoData: ArrayModel[] = [];
 
@@ -20,12 +20,11 @@ export class StorageService {
   getData() {
     this.http.get<ArrayModel[]>(this._url).subscribe(
       (response: ArrayModel[]) => {
-        const infoData = response['DB_Info']['TB_Profile'];
-        //const infoData = response['TB_Profile'];
+        //const infoData = response['DB_Info']['TB_Profile'];
+        const infoData = response;
         this.dbSubject.next(infoData);
-        console.log('From Service');
-        console.log(response);
-        console.log(infoData);
+        console.log('From response Service : ', response);
+        console.log('From infoData Service : ', infoData);
 
       }
     );

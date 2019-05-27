@@ -7,26 +7,27 @@
 </ion-header>
 
 <ion-content>
-<!-- Get Data -->
-<div *ngIf="infoData && infoData.length > 0">
-  <h6>{{ infoData[0].firstName}} {{infoData[0].lastName}}</h6>
-  <img class="imgSize" src="{{infoData[0].path + infoData[0].imgName1 +infoData[0].imgExt}}">
-</div>
-  
-<!-- Insert Data -->
-<form [formGroup]="memoryForm" (ngSubmit)="saveMemory()">
-  <ion-list>
-    <ion-item>
+  <!-- Get Data -->
+  <div *ngIf="infoData && infoData.length > 0">
+    <h6>{{ infoData[0].firstName}} {{infoData[0].lastName}}</h6>
+    <img class="imgSize" src="{{infoData[0].path + infoData[0].imgName1 +infoData[0].imgExt}}">
+  </div>
+
+  <!-- Insert Data -->
+  <form [formGroup]="memoryForm" (ngSubmit)="saveMemory(f)" #f="ngForm">
+    <ion-list>
+      <ion-item>
         <label> First Name </label>
         <input formControlName="firstName" type="text">
-    </ion-item>
-    <ion-item>
+      </ion-item>
+      <ion-item>
         <label> Last Name </label>
         <input formControlName="lastName" type="text">
-    </ion-item>
-  </ion-list>
+      </ion-item>
+    </ion-list>
 
-  <ion-button expand="full" type="submit" [disabled]="!memoryForm.valid">Save <ion-icon name="save" slot="start"></ion-icon></ion-button>
-</form>
-
+    <ion-button expand="full" type="submit" [disabled]="!f.valid">Save <ion-icon name="save" slot="start">
+      </ion-icon>
+    </ion-button>
+  </form>
 </ion-content>
