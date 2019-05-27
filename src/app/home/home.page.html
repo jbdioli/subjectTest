@@ -25,9 +25,6 @@
         <input formControlName="lastName" type="text">
       </ion-item>
     </ion-list>
-
-    <ion-button expand="full" type="submit" [disabled]="!memoryForm.valid">Save <ion-icon name="save" slot="start">
-      </ion-icon>
-    </ion-button>
   </form>
+  <ion-button expand="full" type="submit"  (click)="saveMemory()" [disabled]="!memoryForm.valid">Save <ion-icon name="save" slot="start"></ion-icon></ion-button>
 </ion-content>
